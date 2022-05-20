@@ -8,6 +8,11 @@ import (
 	"syscall"
 
 	"github.com/sirupsen/logrus"
+
+	"github.com/renoire/shkafchik/src/categories"
+	"github.com/renoire/shkafchik/src/httphandlers"
+	"github.com/renoire/shkafchik/src/items"
+	"github.com/renoire/shkafchik/src/router"
 )
 
 type Config struct {
@@ -45,11 +50,14 @@ func initLogger(logFile string) {
 func main() {
 	cfg := getCfg()
 
-	srv := http.Server{
-		Addr: cfg.HTTPAddress,
-	}
-
 	initLogger(cfg.LogFile)
+
+	h := httphandlers.New(*categories.New(), *items.New())
+
+	srv := http.Server{
+		Addr:    cfg.HTTPAddress,
+		Handler: router.GetRouter(h),
+	}
 
 	sigC := make(chan os.Signal, 1)
 	defer close(sigC)
