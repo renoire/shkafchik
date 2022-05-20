@@ -2,7 +2,7 @@ package httphandlers
 
 import "net/http"
 
-func (*Handlers) GetAllItems(w http.ResponseWriter, r *http.Request) {
+func (*HTTPHandlers) GetAllItems(w http.ResponseWriter, r *http.Request) {
 	type Response struct {
 	}
 	type Request struct {
@@ -11,7 +11,7 @@ func (*Handlers) GetAllItems(w http.ResponseWriter, r *http.Request) {
 	//	writeJSONResponse(w, &res)
 }
 
-func (*Handlers) AddItem(w http.ResponseWriter, r *http.Request) {
+func (*HTTPHandlers) AddItem(w http.ResponseWriter, r *http.Request) {
 	type Response struct {
 	}
 	type Request struct {
@@ -20,7 +20,7 @@ func (*Handlers) AddItem(w http.ResponseWriter, r *http.Request) {
 	//	writeJSONResponse(w, &res)
 }
 
-func (*Handlers) GetItem(w http.ResponseWriter, r *http.Request) {
+func (*HTTPHandlers) GetItem(w http.ResponseWriter, r *http.Request) {
 	type Response struct {
 	}
 	type Request struct {
