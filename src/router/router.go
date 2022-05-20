@@ -6,19 +6,19 @@ import (
 	"github.com/renoire/shkafchik/src/httphandlers"
 )
 
-func getRouter() {
+func getRouter(h httphandlers.HTTPHandlers) {
 	r := chi.NewRouter()
 
 	r.Route("/public/api/v1/categories", func(r chi.Router) {
-		r.Get("/", httphandlers.GetCategories)
-		r.Post("/", httphandlers.AddCategory)
+		r.Get("/", h.GetCategories)
+		r.Post("/", h.AddCategory)
 	})
 
 	r.Route("/public/api/v1/items", func(r chi.Router) {
-		r.Get("/", httphandlers.GetAllItems)
-		r.Post("/", httphandlers.AddItem)
-		r.Post("/", httphandlers.GetItem)
+		r.Get("/", h.GetAllItems)
+		r.Post("/", h.AddItem)
+		r.Post("/", h.GetItem)
 	})
 
-	r.Get("/public/api/v1/items", httphandlers.GetAllItems)
+	r.Get("/public/api/v1/items", h.GetAllItems)
 }
