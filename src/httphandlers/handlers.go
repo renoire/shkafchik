@@ -1,52 +1,18 @@
 package httphandlers
 
 import (
-	"net/http"
-
-	"github.com/renoire/shkafchik/src/model"
+	"github.com/renoire/shkafchik/src/categories"
+	"github.com/renoire/shkafchik/src/items"
 )
 
-func GetCategories(w http.ResponseWriter, r *http.Request) {
-	type Response struct {
-		ListCategories []model.Category
-	}
-
-	//	writeJSONResponse(w, &res)
+type HTTPHandlers struct {
+	categoriesService categories.CategoriesService
+	itemsService      items.ItemsService
 }
 
-func AddCategory(w http.ResponseWriter, r *http.Request) {
-	type Response struct {
+func New(categoriesService categories.CategoriesService, itemsService items.ItemsService) *HTTPHandlers {
+	return &HTTPHandlers{
+		categoriesService: categoriesService,
+		itemsService:      itemsService,
 	}
-	type Request struct {
-		cat model.Category
-	}
-
-	//	writeJSONResponse(w, &res)
-}
-
-func GetAllItems(w http.ResponseWriter, r *http.Request) {
-	type Response struct {
-	}
-	type Request struct {
-	}
-
-	//	writeJSONResponse(w, &res)
-}
-
-func AddItem(w http.ResponseWriter, r *http.Request) {
-	type Response struct {
-	}
-	type Request struct {
-	}
-
-	//	writeJSONResponse(w, &res)
-}
-
-func GetItem(w http.ResponseWriter, r *http.Request) {
-	type Response struct {
-	}
-	type Request struct {
-	}
-
-	//	writeJSONResponse(w, &res)
 }
