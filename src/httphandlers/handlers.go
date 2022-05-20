@@ -10,8 +10,8 @@ type HTTPHandlers struct {
 	itemsService      items.ItemsService
 }
 
-func New(categoriesService categories.CategoriesService, itemsService items.ItemsService) *HTTPHandlers {
-	return &HTTPHandlers{
+func New(categoriesService categories.CategoriesService, itemsService items.ItemsService) HTTPHandlers {
+	return HTTPHandlers{
 		categoriesService: categoriesService,
 		itemsService:      itemsService,
 	}

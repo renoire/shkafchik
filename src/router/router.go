@@ -6,7 +6,7 @@ import (
 	"github.com/renoire/shkafchik/src/httphandlers"
 )
 
-func getRouter(h httphandlers.HTTPHandlers) {
+func GetRouter(h httphandlers.HTTPHandlers) *chi.Mux {
 	r := chi.NewRouter()
 
 	r.Route("/public/api/v1/categories", func(r chi.Router) {
@@ -21,4 +21,6 @@ func getRouter(h httphandlers.HTTPHandlers) {
 	})
 
 	r.Get("/public/api/v1/items", h.GetAllItems)
+
+	return r
 }
