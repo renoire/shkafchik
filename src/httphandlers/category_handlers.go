@@ -10,9 +10,9 @@ import (
 )
 
 func (*HTTPHandlers) GetCategories(w http.ResponseWriter, r *http.Request) {
-	type Response struct {
-		ListCategories []model.Category
-	}
+	// type Response struct {
+	// 	ListCategories []model.Category
+	// }
 
 	//	writeJSONResponse(w, &res)
 }
