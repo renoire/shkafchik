@@ -38,13 +38,13 @@ func getCfg() Config {
 }
 
 func initLogger(logFile string) {
-	lf, err := os.OpenFile(logFile, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0755)
-	if err != nil {
-		logrus.Panic("Could not open or create log file: ", err)
-	}
+	// lf, err := os.OpenFile(logFile, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0755)
+	// if err != nil {
+	// 	logrus.Panic("Could not open or create log file: ", err)
+	// }
 
 	logrus.SetFormatter(&logrus.JSONFormatter{})
-	logrus.SetOutput(lf)
+	logrus.SetOutput(os.Stdout)
 }
 
 func main() {

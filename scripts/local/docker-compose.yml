@@ -1,0 +1,33 @@
+version: "3"
+services:
+  clickhouse:
+    image: yandex/clickhouse-server
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    env_file:
+      - ./local.yml
+    environment:
+      - CLICKHOUSE_USER
+      - CLICKHOUSE_PASSWORD
+    volumes:
+      - ../../clickhouse/database:/var/lib/clickhouse
+      - ../../clickhouse/init-db.d:/docker-entrypoint-initdb.d/
+  shkafchik:
+    build:
+      context: ../../
+      dockerfile: ./scripts/local/Dockerfile
+    environment:
+      - CLICKHOUSE_SERVER
+      - CLICKHOUSE_DB
+      - CLICKHOUSE_USER
+      - CLICKHOUSE_PASSWORD    
+    env_file:
+      - ./local.yml
+    ports:
+      - "8001:80"
+    depends_on:
+      - clickhouse
+    links:
+      - clickhouse
+    restart: on-failure
