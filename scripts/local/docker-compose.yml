@@ -1,7 +1,7 @@
 version: "3"
 services:
   clickhouse:
-    image: yandex/clickhouse-server
+    image: clickhouse/clickhouse-server
     ports:
       - "8123:8123"
       - "9000:9000"
@@ -11,8 +11,9 @@ services:
       - CLICKHOUSE_USER
       - CLICKHOUSE_PASSWORD
     volumes:
-      - ../../clickhouse/database:/var/lib/clickhouse
       - ../../clickhouse/init-db.d:/docker-entrypoint-initdb.d/
+    # - ../../clickhouse/database:/var/lib/clickhouse
+    restart: always
   shkafchik:
     build:
       context: ../../
